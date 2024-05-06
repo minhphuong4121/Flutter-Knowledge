@@ -1,0 +1,67 @@
+- Iterable:
+  + Define:
+ 	++ var numbers = Iterable.generate(10);
+ 	++ var list1 = [] -- List<int> list1 = []
+	++ var map1 = {}->{key: value}
+	++ var set1 = <int>{} ->{value} -- Set<int> set1 = {} (Các value là duy nhất không trùng nhau, nếu trùng sẽ lấy 1)
+	++ var queue1 = Queue()||Queue<int>();
+
+  + Add:
+	++ List: list1.add(value) -- list1.addAll( list2 ) -- addElementAt
+	++ map1[key1] = value -- map1.addAll(map2) (Nếu trùng key thì key sau sẽ ghi đè lên key trước )
+	++ set1.add(value) -- set1.addAll(set2)
+	++ queue1.add(value) -- queue1.addFirst(value) -- addLast -- .addAll(list1)
+
+  + Duyet:
+	++ List: list1.forEach((i)){print(i);}
+	++ map1.forEach((key, value){print('$key - $value')}); -- print(map1[key1])->value1
+	++ set1.forEach(i)=> print(i);
+	++ queue1.forEach(i) => print(i);
+
+  + Remove: 
+	++ list1.remove(value) -- list1.removeAt(index) -- list1.removeRange(index1, index2)
+	++ map1.remove(key1)
+	++ set1.remove(value) -- set1.removeAll(set2)
+	++ queue1.remove(value) 
+
+  + Reverse:
+	++ list1.reverse.foreach()
+
+- Convert:
+	+ double doubleA = double.parse(stringA)
+	+ List<String> list1 && Set<String> set1 => set1.addAll(list1)
+	+ Set<dynamic> set2 = Set.from(list1)
+	+ list1 = set1.map((i) => i).toList();
+
+- Toan tử:
+  	+ (..) Cascades:  list1..add(value1)..add(value2)..
+	+ break: thoát khỏi vòng lặp -- continue: bỏ qua phần tử đang xét và tiếp tục vòng lặp.
+
+- enum Exp(a, b ,c)
+  	print (Exp.values[0])
+	Exp.values.forEach((i)){
+		print(i.name);}
+- Future:
+	+ Khai báo:
+		++ Future<void> asyncFunc(){
+			return ...;}
+		
+
+- Stream:
+	+ Khai báo:
+		++ Stream<int> countStream(int value) async*{
+			.....
+			yield ...;
+		}
+	+ Lấy dữ liệu:
+		++(1) countStream(10).listen((event){ ///Có thể bỏ qua listen() để đến lệnh tiếp theo.
+     		   print(event);
+  			});
+		++(2) await for (int value in countStream(10)){ ///Sẽ chạy theo tuần tự. Xong await for mới đến lệnh tiếp theo
+			print(value.toString());
+			}
+		++ var stream = Stream.fromIterable // .fromFuture
+	+ Truyền dữ liệu theo thời gian nhất định:
+		++  Stream<int> streamPeriodic = Stream.periodic(Duration(seconds: 2), (value) {
+    			return value;}
+  				);
